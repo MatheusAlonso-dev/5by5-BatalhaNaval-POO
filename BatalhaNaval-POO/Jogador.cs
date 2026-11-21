@@ -1,22 +1,12 @@
 ﻿public class Jogador
 {
     public string Nome { get; set; }
-    public int Pontuacao { get; set; }
 
-    public void RegistrarAcerto()
+    public Tabuleiro Tabuleiro { get; set; }
+
+    public Jogador(string nome, Tabuleiro tabuleiro)
     {
-        Pontuacao++;
-    }
-
-    public int Atacar(Tabuleiro tabuleiro, int linha, int coluna)
-    {
-        int resultado = tabuleiro.ReceberTiro()(linha, coluna);
-
-        if (resultado == 1)
-        {
-            RegistrarAcerto();
-        }
-
-        return resultado;
+        Nome = nome;
+        Tabuleiro = tabuleiro;
     }
 }
