@@ -10,7 +10,7 @@
 
     public int Atacar(Tabuleiro tabuleiro, int linha, int coluna)
     {
-        int resultado = tabuleiro.AtirarNoTabuleiro(linha, coluna);
+        int resultado = tabuleiro.ReceberTiro()(linha, coluna);
 
         if (resultado == 1)
         {
