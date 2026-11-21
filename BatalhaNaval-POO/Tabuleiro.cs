@@ -111,6 +111,25 @@
             Console.WriteLine();
         }
     }
+    public int ReceberTiro(int linha, int coluna)
+    {
+        switch(Matriz[linha, coluna])
+        {
+            case 1:
+                Matriz[linha, coluna] = 3;
+                return 1; //atirou na agua
+            case 2:
+                return 2; //atirou em um navio ja atacado
+            case 3:
+                return 3; //atirou na agua ja atacada
+            case 4:
+                Matriz[linha, coluna] = 2;
+                return 4; //acertou um navio
+            default:
+                return 5; //nunca entra aqui, pois o tabuleiro nunca tem outro numero diferente de 1,2,3,4.
+        }
+        
+    }
 
 
 }
