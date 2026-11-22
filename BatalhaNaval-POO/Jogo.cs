@@ -140,6 +140,13 @@
         int linha = Random.Shared.Next(0, 10);
         int coluna = Random.Shared.Next(0, 10);
 
+        do
+        {
+            linha = Random.Shared.Next(0, 10);
+            coluna = Random.Shared.Next(0, 10);
+
+        } while (tirosMaquina[linha, coluna] != '~');
+
         // A máquina ataca o tabuleiro da pessoa e recebe o resultado do tiro.
         int resultado = Maquina.Atacar(Pessoa.Tabuleiro, linha, coluna);
 
