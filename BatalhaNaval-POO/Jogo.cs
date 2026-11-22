@@ -1,6 +1,4 @@
-﻿
-
-public class Jogo
+﻿public class Jogo
 {
     public Jogador Pessoa;
     public Jogador Maquina;
@@ -96,13 +94,12 @@ public class Jogo
     // textual em índices da matriz e executa o ataque contra a máquina.
     public void TurnoPessoa()
     {
-        Console.Write("Digite a coordenada do ataque (ex.: B5): ");
-        string coordenada = Console.ReadLine().ToUpper();
+        // Pede a linha (letra) e a coluna (número) separadamente.
+        Console.Write("Digite a letra da linha (A a J): ");
+        string letra = Console.ReadLine().ToUpper();
 
-        // A primeira parte da coordenada identifica a linha (A-J), e o
-        // restante identifica a coluna (1-10).
-        string letra = coordenada.Substring(0, 1);
-        int numero = int.Parse(coordenada.Substring(1));
+        Console.Write("Digite o número da coluna (1 a 10): ");
+        int numero = int.Parse(Console.ReadLine());
 
         // Procura qual índice numérico corresponde à letra informada.
         int linha = 0;
