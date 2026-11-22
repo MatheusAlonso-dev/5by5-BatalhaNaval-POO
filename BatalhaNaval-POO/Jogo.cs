@@ -5,7 +5,8 @@
     public Jogador JogadorDaVez;
 
     // Converte o índice numérico de uma linha (0 a 9) para a letra
-    public string[] letras = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J" };
+   
+    public char[] letras = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
 
 
     // '~' = não atacada, 'O' = água, 'X' = acertou navio
@@ -49,7 +50,7 @@
         // A matriz tirosMaquina representa os disparos da máquina contra
         // o tabuleiro da pessoa, portanto mostra o que a máquina descobriu.
         Console.WriteLine("SEU TABULEIRO (~ = não atacada, O = água, X = acerto)");
-        Console.WriteLine("   1 2 3 4 5 6 7 8 9 10");
+        Console.WriteLine("   0 1 2 3 4 5 6 7 8 9");
 
         // Percorre as dez linhas do tabuleiro.
         for (int i = 0; i < 10; i++)
@@ -69,7 +70,7 @@
         // A matriz tirosPessoa representa os disparos feitos pela pessoa
         // contra o tabuleiro da máquina.
         Console.WriteLine("TABULEIRO DA MÁQUINA (~ = não atacada, O = água, X = acerto)");
-        Console.WriteLine("   1 2 3 4 5 6 7 8 9 10");
+        Console.WriteLine("   0 1 2 3 4 5 6 7 8 9");
 
         // Repete a mesma forma de impressão para os tiros da pessoa.
         for (int i = 0; i < 10; i++)
@@ -95,25 +96,47 @@
     public void TurnoPessoa()
     {
         // Pede a linha (letra) e a coluna (número) separadamente.
-        Console.Write("Digite a letra da linha (A a J): ");
-        string letra = Console.ReadLine().ToUpper();
+        char linhaChar = '@';
+        int linha = -1;
+        int coluna = 0; ;
+        bool casaValida = true;
 
-        Console.Write("Digite o número da coluna (1 a 10): ");
-        int numero = int.Parse(Console.ReadLine());
-
-        // Procura qual índice numérico corresponde à letra informada.
-        int linha = 0;
-        for (int i = 0; i < 10; i++)
+        while (true)
         {
-            if (letras[i] == letra)
-            {
-                linha = i;
-            }
-        }
+            if (!casaValida)
+                Console.WriteLine("\n\tcasa inválida! Digite novamente.");
 
-        // As colunas exibidas ao usuário começam em 1, mas os arrays começam
-        // em 0; por isso, subtrai-se 1 do número digitado.
-        int coluna = numero - 1;
+            Console.Write("\n\tDigite a linha e coluna(ex: b1): ");
+            string casaString = Console.ReadLine();
+
+            if (casaString.Length < 2 || !char.IsLetter(casaString[0]) || !char.IsDigit(casaString[1]))
+            {
+                casaValida = false;
+                continue;
+            }
+
+            linhaChar = char.ToUpper(casaString[0]);
+
+            for(int i = 0; i < 10; i++)
+            {
+                char charAux = linhaChar;
+
+                if(charAux == letras[i])
+                {
+                    linha = i;
+                    break;
+                }
+            }
+
+
+            coluna = int.Parse(casaString[1].ToString());
+
+            if (linha >= 0 && linha <= 9 && coluna >= 0 && coluna <= 9)
+                break;
+
+            casaValida = false;
+
+        }
 
         // O Jogador encaminha o disparo ao tabuleiro adversário e retorna
         // um código que informa se houve acerto ou erro.
