@@ -148,10 +148,14 @@
             tirosPessoa[linha, coluna] = 'X';
             Console.WriteLine("Você ACERTOU um navio!");
         }
-        else
+        else if (resultado == 1)
         {
             tirosPessoa[linha, coluna] = 'O';
             Console.WriteLine("Você acertou a água.");
+        }
+        else
+        {
+            Console.WriteLine("Você já tinha atirado nessa casa! Perdeu a vez...");
         }
     }
 
